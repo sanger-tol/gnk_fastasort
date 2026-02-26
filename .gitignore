@@ -1,0 +1,17 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+src/gnk_fastasort.egg-info
+src/__pycache__
+.ruff_cache/
+
+# Virtual environments
+.venv
+
+# Test files
+*.log
+*.fa

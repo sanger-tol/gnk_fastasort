@@ -1,0 +1,26 @@
+[project]
+name = "gnk_fastasort"
+version = "0.1.0"
+description = "A package to create a preferred order of a FASTA scaffolds, useful for PretextSnapshot and SAMTOOLS reordering."
+readme = "README.md"
+requires-python = ">=3.12"
+keywords = [ "pretextsnapshot", "ncbi-api", "fasta", "bioinformatics" ]
+dependencies = []
+
+[build-system]
+requires = ["setuptools>=82", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.11.11",
+]
+
+[project.scripts]
+fastasort = "gnk_fastasort.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
