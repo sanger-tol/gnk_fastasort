@@ -74,4 +74,4 @@ def main(args):
             if args.style == "names":
                 output.write(f"{i}\n")
             else:
-                output.write(f"{i}\t{final_dict[i]['parent']}\t-\t{final_dict[i]['length']}\n")
+                output.write(f"{i}\t-\t{final_dict[i]['parent']}\t{final_dict[i]['length']}\n")
