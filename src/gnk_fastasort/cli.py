@@ -24,7 +24,8 @@ def parse_args():
         help="""Output style of data:
         'names' is a \\n seperated list of scaffold names,
         'full' is a tsv of  'names', 'original name', 'parent molecule' and 'length'.""")
-    parser.add_argument("-v", "--version", action="version", version="%(prog)s: 1.0.0")
+    parser.add_argument("-o", "--output", help="Output file prefix", type=str)
+    parser.add_argument("-v", "--version", action="version", version="%(prog)s: 0.1.2")
     return parser.parse_args()
 
 def main():

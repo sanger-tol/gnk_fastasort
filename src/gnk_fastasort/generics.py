@@ -1,5 +1,8 @@
 import re
 import pathlib
+import logging
+
+logger = logging.getLogger('gnk_fastasort_logger')
 
 def read_index(index_file: pathlib.Path) -> dict[str, dict[str, str]]:
     """
@@ -11,13 +14,21 @@ def read_index(index_file: pathlib.Path) -> dict[str, dict[str, str]]:
     with open(index_file, 'r') as f:
         index = {}
         for line in f:
-            scaffold,  length, offset, linebases, linewidth = line.strip().split('\t')
-            index[scaffold] = {
-                "length": length,
-                "offset": offset,
-                "linebases": linebases,
-                "linewidth": linewidth
-            }
+            line_list = line.strip().split('\t')
+            if len(line_list) == 2:
+                logger.info("[gnk_fastasort] Sizes file as input")
+                index[line_list[0]] = {
+                    "length": line_list[1]
+                }
+            elif len(line_list) >= 4:
+                logger.info("[gnk_fastasort] FAI file as input")
+                scaffold,  length, offset, linebases, linewidth = line.strip().split('\t')
+                index[line_list[0]] = {
+                    "length": line_list[1],
+                    "offset": line_list[2],
+                    "linebases": line_list[3],
+                    "linewidth": line_list[4]
+                }
     return index
 
 def compute_new_order(index: dict) -> dict[str, dict]:
@@ -71,7 +82,7 @@ def ordered_list(scaff_dictionary: dict) -> list[str] :
     return ordered_list
 
 def generate_final_dict(
-    sorted_all_groups: dict,
+    sorted_all_groups: list,
     flattened_unlocs: dict,
     index: dict,
     minor_scaffolds_names: list[str]

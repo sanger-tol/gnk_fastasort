@@ -1,6 +1,6 @@
 [project]
 name = "gnk_fastasort"
-version = "0.1.0"
+version = "0.1.2"
 description = "A package to create a preferred order of a FASTA scaffolds, useful for PretextSnapshot and SAMTOOLS reordering."
 readme = "README.md"
 requires-python = ">=3.12"

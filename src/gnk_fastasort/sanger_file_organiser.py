@@ -11,7 +11,11 @@ from gnk_fastasort.generics import (
 logger = logging.getLogger('gnk_fastasort_logger')
 
 def main(args):
-    outname = f"{str(args.index).split('.')[0]}_reordered.tsv"
+    if args.output:
+        outname = f"{args.output}_reordered.tsv"
+    else:
+        outname = f"{str(args.index).split('.')[0]}_reordered.tsv"
+
     index: dict[str, dict[str, str]] = read_index(args.index)
 
     if len(index) == 0:
@@ -58,7 +62,7 @@ def main(args):
     logger.info(f"[fastasort] Sorted MINOR Scaffold count: {len(minor_scaffolds_names)}")
 
     # Merge the sorted lists of names
-    sorted_all_groups: list[tuple[str, int]] = output_list + minor_scaffolds_names
+    sorted_all_groups: list[str] = output_list + minor_scaffolds_names
 
     # flatten a dict of dict+list (parent molecule = { unlocs = [item1...]})
     # into a dict of unloc = {parent molecule}
